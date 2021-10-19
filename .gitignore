@@ -361,12 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Assets/Assets
 /Library
 /ProjectSettings
 /Temp
-/.editorconfig
-/.vsconfig
-/Assembly-CSharp-Editor.csproj
-/Assembly-CSharp.csproj
-/SpaceShooter.sln
-/Assets/Assets
