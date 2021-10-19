@@ -365,3 +365,8 @@ FodyWeavers.xsd
 /Library
 /ProjectSettings
 /Temp
+/.editorconfig
+/.vsconfig
+/Assembly-CSharp-Editor.csproj
+/Assembly-CSharp.csproj
+/SpaceShooter.sln
