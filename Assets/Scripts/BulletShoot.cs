@@ -5,17 +5,24 @@ using UnityEngine;
 public class BulletShoot : MonoBehaviour
 {
     public float bulletSpeed;
-    public Rigidbody bullet;
+    public GameObject bullet;
+    private GameObject bulletClone;
     public float bulletDamage;
+    public float bulletDestroyTime = 10f;
+
+    private void Start()
+    {
+        bullet = (GameObject)Resources.Load("Prefabs/Bullet");
+    }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Rigidbody clone = Instantiate(bullet, transform.position, transform.rotation);
-            clone.velocity = transform.TransformDirection(0, 0, bulletSpeed);
+            bulletClone = Instantiate(bullet, transform.position, transform.rotation);
+            bulletClone.GetComponent<Rigidbody>().velocity = transform.TransformDirection(0, 0, bulletSpeed);
 
-            Destroy(clone, 10f);
+            Destroy(bulletClone, bulletDestroyTime);
         }
     }
 }
