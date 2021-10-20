@@ -361,7 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/Assets/Assets
 /Library
 /ProjectSettings
 /Temp
@@ -370,3 +369,8 @@ FodyWeavers.xsd
 /Assembly-CSharp-Editor.csproj
 /Assembly-CSharp.csproj
 /SpaceShooter.sln
+/Assets/Assets/BreakableAsteroids
+/Assets/Assets/Gamer Squid/Assets
+/Assets/Assets/Planet Earth Free/Materials
+/Assets/Assets/Space Station/Spaceship
+/Assets/Assets/Stagit/SkyboxEarthPlanets/flares
