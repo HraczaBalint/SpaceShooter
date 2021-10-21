@@ -9,7 +9,7 @@ public class ShipMovement : MonoBehaviour
 
     private Rigidbody rigidBody;
     private Transform playerCamera;
-    private ParticleSystem exhaustParticle;
+    private GameObject[] exhaustParticles;
 
     public float slideSpeed = 5f;
     public float movementSpeed = 0f;
@@ -46,20 +46,23 @@ public class ShipMovement : MonoBehaviour
 
     void Update()
     {
-        MouseAxis();
         Ftl();
         Speed();
-        Slide();
-        Turn();
-        Roll();
         Exhaust();
+
+        if (!_ftlBurstStart)
+        {
+            Slide();
+            Turn();
+            Roll();
+        }
     }
 
     private void Init()
     {
         rigidBody = GameObject.Find("Player").GetComponent<Rigidbody>();
         playerCamera = GameObject.Find("Player Camera").GetComponent<Transform>();
-        exhaustParticle = GameObject.Find("Exhaust Particle").GetComponent<ParticleSystem>();
+        exhaustParticles = GameObject.FindGameObjectsWithTag("Exhaust Particle");
 
         sounds = GameObject.Find("Audio Manager").GetComponent<Sounds>();
     }
@@ -69,7 +72,7 @@ public class ShipMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    private void MouseAxis()
+    private void InputAxis()
     {
         x = Input.GetAxis("Horizontal");
         y = Input.GetAxis("Vertical");
@@ -135,11 +138,18 @@ public class ShipMovement : MonoBehaviour
     {
         if (!_ftlBurstStart)
         {
-            exhaustParticle.startLifetime = Mathf.Sqrt(movementSpeed / 100);
+            foreach (GameObject exhaustParticle in exhaustParticles)
+            {
+                exhaustParticle.GetComponent<ParticleSystem>().startLifetime = Mathf.Sqrt(movementSpeed / 500);
+            }
         }
         else
         {
-            exhaustParticle.startLifetime = 5f;
+            foreach (GameObject exhaustParticle in exhaustParticles)
+            {
+                exhaustParticle.GetComponent<ParticleSystem>().startLifetime = 5f;
+                exhaustParticle.GetComponent<ParticleSystem>().simulationSpace = ParticleSystemSimulationSpace.Local;
+            }
         }
     }
 
@@ -175,6 +185,7 @@ public class ShipMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
         {
+            InputAxis();
             slideDirection = transform.right * x + transform.up * y;
             rigidBody.AddForce(slideDirection.normalized * slideSpeed * Time.deltaTime);
 

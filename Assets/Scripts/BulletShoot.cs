@@ -7,7 +7,7 @@ public class BulletShoot : MonoBehaviour
     public float bulletSpeed;
     public GameObject bullet;
     private GameObject bulletClone;
-    public float bulletDamage;
+    public float bulletDamage = 10f;
     public float bulletDestroyTime = 10f;
 
     private void Start()
