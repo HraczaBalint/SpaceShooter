@@ -13,8 +13,14 @@ public class ShipMovement : MonoBehaviour
 
     public float slideSpeed = 5f;
     public float movementSpeed = 0f;
+    private float _lastMovementSpeed = 0f;
     private float _minMovementSpeed = 0f;
     public float maxMovementSpeed = 200f;
+    public float boostSpeed = 300f;
+    public float acceleration = 5f;
+    public float boostAcceleration = 10f;
+    public float deceleration = 1f;
+    private bool _boostReleased;
     public float turnTime = 40f;
     private const float _rollSpeedMultiplier = 0.01f;
     public float rollSpeed = 25f;
@@ -48,6 +54,7 @@ public class ShipMovement : MonoBehaviour
     {
         Ftl();
         Speed();
+        BoostSpeed();
         Exhaust();
 
         if (!_ftlBurstStart)
@@ -215,7 +222,7 @@ public class ShipMovement : MonoBehaviour
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && !Input.GetKey(KeyCode.LeftControl) && movementSpeed < maxMovementSpeed)
         {
-            movementSpeed += maxMovementSpeed * 0.05f;
+            movementSpeed += acceleration;
 
             if (movementSpeed >= maxMovementSpeed)
             {
@@ -225,11 +232,49 @@ public class ShipMovement : MonoBehaviour
 
         if (Input.GetAxis("Mouse ScrollWheel") < 0 && !Input.GetKey(KeyCode.LeftControl) && movementSpeed > _minMovementSpeed)
         {
-            movementSpeed -= maxMovementSpeed * 0.05f;
+            movementSpeed -= acceleration;
 
             if (movementSpeed <= _minMovementSpeed)
             {
                 movementSpeed = _minMovementSpeed;
+            }
+        }
+    }
+
+    private void BoostSpeed()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _lastMovementSpeed = movementSpeed;
+        }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            _boostReleased = false;
+
+            movementSpeed += boostAcceleration;
+
+            if (movementSpeed >= boostSpeed)
+            {
+                movementSpeed = boostSpeed;
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            _boostReleased = true;
+        }
+
+        if (_boostReleased)
+        {
+            if (movementSpeed > _lastMovementSpeed)
+            {
+                movementSpeed -= deceleration;
+            }
+
+            if (movementSpeed <= _lastMovementSpeed)
+            {
+                _boostReleased = false;
             }
         }
     }
