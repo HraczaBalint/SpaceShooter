@@ -981,6 +981,10 @@ MonoBehaviour:
   slideSpeed: 100
   movementSpeed: 0
   maxMovementSpeed: 200
+  boostSpeed: 300
+  acceleration: 5
+  boostAcceleration: 10
+  deceleration: 1
   turnTime: 40
   rollSpeed: 30
   ftlChargeTime: 5
@@ -1024,6 +1028,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2007374839}
     m_Modifications:
+    - target: {fileID: 1342953078957901941, guid: 470a6dacf09d93547b130e3d9d3bd31f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6872687608670255357, guid: 470a6dacf09d93547b130e3d9d3bd31f,
         type: 3}
       propertyPath: m_LocalPosition.x
