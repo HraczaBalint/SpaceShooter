@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ShipMovement : MonoBehaviour
 {
-    private Sounds sounds;
+    private AudioManager audioManager;
 
     private Rigidbody rigidBody;
     private Transform playerCamera;
@@ -33,6 +33,9 @@ public class ShipMovement : MonoBehaviour
     private bool _ftlJumpStart;
     private bool _ftlBurstStart;
     private bool _ftlJumpComplete;
+    private bool _ftlJumpSound;
+    private bool _engineSound;
+    private bool _thrusterSound;
 
     private Vector3 slideDirection;
     private Vector3 turnDirection;
@@ -42,7 +45,7 @@ public class ShipMovement : MonoBehaviour
     private float x;
     private float y;
 
-    private bool playedJumpSound = false;
+    
 
     void Start()
     {
@@ -71,7 +74,7 @@ public class ShipMovement : MonoBehaviour
         playerCamera = GameObject.Find("Player Camera").GetComponent<Transform>();
         exhaustParticles = GameObject.FindGameObjectsWithTag("Exhaust Particle");
 
-        sounds = GameObject.Find("Audio Manager").GetComponent<Sounds>();
+        audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
     }
 
     private void MouseLock()
@@ -89,12 +92,13 @@ public class ShipMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.J) && !_ftlJumpStart)
         {
-            if (!sounds.shipSource.isPlaying)
+            if (!audioManager.IsPlaying("FTL charge up") && !audioManager.IsPlaying("FTL charge down"))
             {
-                sounds.shipSource.PlayOneShot(sounds.ftlChargeUp);
+                audioManager.Play("FTL charge up");
 
                 _ftlJumpStart = true;
                 _ftlJumpComplete = false;
+                _ftlJumpSound = false;
 
                 _ftlChargeCountdown = ftlChargeTime;
                 _ftlBurstCountdown = ftlBurstTime;
@@ -103,10 +107,10 @@ public class ShipMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.K) && _ftlJumpStart && !_ftlBurstStart)
         {
-            if (sounds.shipSource.isPlaying)
+            if (audioManager.IsPlaying("FTL charge up"))
             {
-                sounds.shipSource.Stop();
-                sounds.shipSource.PlayOneShot(sounds.ftlChargeDown);
+                audioManager.Stop("FTL charge up");
+                audioManager.Play("FTL charge down");
             }
             _ftlJumpStart = false;
         }
@@ -117,10 +121,10 @@ public class ShipMovement : MonoBehaviour
 
             if (_ftlChargeCountdown <= 0)
             {
-                if (!playedJumpSound)
+                if (!_ftlJumpSound)
                 {
-                    sounds.shipSource.PlayOneShot(sounds.ftlJump);
-                    playedJumpSound = true;
+                    audioManager.Play("FTL jump in");
+                    _ftlJumpSound = true;
                 }
 
                 _ftlBurstStart = true;
@@ -132,7 +136,8 @@ public class ShipMovement : MonoBehaviour
                 }
                 else
                 {
-                    sounds.shipSource.PlayOneShot(sounds.ftlFinish, 0.5f);
+                    audioManager.Play("FTL jump finish");
+                    _ftlJumpSound = false;
                     _ftlJumpComplete = true;
                     _ftlBurstStart = false;
                     _ftlJumpStart = false;
@@ -196,7 +201,16 @@ public class ShipMovement : MonoBehaviour
             slideDirection = transform.right * x + transform.up * y;
             rigidBody.AddForce(slideDirection.normalized * slideSpeed * Time.deltaTime);
 
-            //sounds.shipSource.PlayOneShot(sounds.gasLeak, 0.1f);
+            if (!_thrusterSound)
+            {
+                audioManager.Play("Truster");
+                _thrusterSound = true;
+            }
+        }
+        else
+        {
+            _thrusterSound = false;
+            audioManager.Stop("Truster");
         }
     }
 
@@ -238,6 +252,20 @@ public class ShipMovement : MonoBehaviour
             {
                 movementSpeed = _minMovementSpeed;
             }
+        }
+
+        if (movementSpeed > 0f)
+        {
+            if (!_engineSound)
+            {
+                audioManager.Play("Engine");
+                _engineSound = true;
+            }
+        }
+        else
+        {
+            _engineSound = false;
+            audioManager.Stop("Engine");
         }
     }
 

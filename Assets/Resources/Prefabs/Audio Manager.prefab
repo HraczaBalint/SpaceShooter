@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &961685390862806919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 961685390862806917}
+  - component: {fileID: 961685390862806916}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &961685390862806917
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961685390862806919}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &961685390862806916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961685390862806919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb20bd7ed3692194fa0ae12d07b9b52e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Background Noise
+    audioClip: {fileID: 8300000, guid: 7fc59cfca2c8929478ad24e921033303, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    audioSource: {fileID: 0}
+  - name: FTL charge up
+    audioClip: {fileID: 8300000, guid: 256ed93195a7d0c488387a837301f44d, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - name: FTL charge down
+    audioClip: {fileID: 8300000, guid: 330780be953883640ae531e5d6107baa, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - name: FTL jump in
+    audioClip: {fileID: 8300000, guid: ad1738a83dc2f2448a0c83e8979ee6e5, type: 3}
+    volume: 0.5
+    pitch: 1.5
+    loop: 0
+    audioSource: {fileID: 0}
+  - name: FTL jump finish
+    audioClip: {fileID: 8300000, guid: a6554fa2548579444ae4a6ae5ba63fe1, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    audioSource: {fileID: 0}
+  - name: Engine
+    audioClip: {fileID: 8300000, guid: 62638b01f78b1f240880d5c78dc11332, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 1
+    audioSource: {fileID: 0}
+  - name: Truster
+    audioClip: {fileID: 8300000, guid: 737ababb7b87b0a4e93a430a8948c5ca, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 1
+    audioSource: {fileID: 0}
+  - name: 
+    audioClip: {fileID: 0}
+    volume: 0.5
+    pitch: 1.5
+    loop: 0
+    audioSource: {fileID: 0}
