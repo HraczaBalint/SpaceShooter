@@ -10,6 +10,7 @@ public class ShipMovement : MonoBehaviour
     private Rigidbody rigidBody;
     private Transform playerCamera;
     private GameObject[] exhaustParticles;
+    private ParticleSystem FTLEffectParticles;
 
     public float slideSpeed = 5f;
     public float movementSpeed = 0f;
@@ -72,7 +73,9 @@ public class ShipMovement : MonoBehaviour
     {
         rigidBody = GameObject.Find("Player").GetComponent<Rigidbody>();
         playerCamera = GameObject.Find("Player Camera").GetComponent<Transform>();
+
         exhaustParticles = GameObject.FindGameObjectsWithTag("Exhaust Particle");
+        FTLEffectParticles = GameObject.Find("FTL Effect").GetComponent<ParticleSystem>();
 
         audioManager = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
     }
@@ -154,6 +157,11 @@ public class ShipMovement : MonoBehaviour
             {
                 exhaustParticle.GetComponent<ParticleSystem>().startLifetime = Mathf.Sqrt(movementSpeed / 500);
             }
+
+            if (FTLEffectParticles.isPlaying)
+            {
+                FTLEffectParticles.Stop();
+            }
         }
         else
         {
@@ -161,6 +169,11 @@ public class ShipMovement : MonoBehaviour
             {
                 exhaustParticle.GetComponent<ParticleSystem>().startLifetime = 5f;
                 exhaustParticle.GetComponent<ParticleSystem>().simulationSpace = ParticleSystemSimulationSpace.Local;
+            }
+
+            if (FTLEffectParticles.isStopped)
+            {
+                FTLEffectParticles.Play();
             }
         }
     }
@@ -254,7 +267,7 @@ public class ShipMovement : MonoBehaviour
             }
         }
 
-        if (movementSpeed > 0f)
+        if (movementSpeed > 0f && !_ftlBurstStart)
         {
             if (!_engineSound)
             {

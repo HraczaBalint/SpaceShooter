@@ -29,18 +29,6 @@ public class AudioManager : MonoBehaviour
         Play("Background Noise");
     }
 
-    public bool IsPlaying(string name)
-    {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-
-        if (s.audioSource.isPlaying)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
     private void CheckInstance()
     {
         if (instance == null)
@@ -54,6 +42,18 @@ public class AudioManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    public bool IsPlaying(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        if (s.audioSource.isPlaying)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public void Play(string name)
@@ -82,6 +82,38 @@ public class AudioManager : MonoBehaviour
         if (s.audioSource.isPlaying)
         {
             s.audioSource.Stop();
+        }
+    }
+
+    public void Volume(string name, float volume)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+
+        if (s.audioSource.isPlaying)
+        {
+            s.audioSource.volume = volume;
+        }
+    }
+
+    public void Pitch(string name, float pitch)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+
+        if (s.audioSource.isPlaying)
+        {
+            s.audioSource.pitch = pitch;
         }
     }
 }
