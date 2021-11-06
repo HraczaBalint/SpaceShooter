@@ -5,11 +5,13 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     public float health;
-    BulletShoot bulletShoot;
-    public float fadeSpeed;
+    private BulletShoot bulletShoot;
 
     [Tooltip("\"Fractured\" is the object that this will break into")]
     public GameObject fractured;
+
+    private GameObject fracturesClone;
+    public float fracturesDestroyTime = 20f;
 
     private void Start()
     {
@@ -31,16 +33,16 @@ public class Target : MonoBehaviour
 
     public void FractureObject()
     {
-        GameObject clone = Instantiate(fractured, transform.position, transform.rotation);
-        clone.transform.localScale = transform.localScale;
+        fracturesClone = Instantiate(fractured, transform.position, transform.rotation);
+        fracturesClone.transform.localScale = transform.localScale;
         Destroy(gameObject);
-        Destroy(clone, 20f);
+        Destroy(fracturesClone, fracturesDestroyTime);
     }
 
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float damageAmount)
     {
-        health -= amount;
+        health -= damageAmount;
 
         if (health <= 0)
         {
