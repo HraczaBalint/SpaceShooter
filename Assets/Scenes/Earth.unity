@@ -873,8 +873,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2007374839}
-  - component: {fileID: 2007374838}
-  - component: {fileID: 2007374837}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -882,46 +880,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2007374837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007374836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30ad6472412def14bba931170eb180cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slideSpeed: 100
-  movementSpeed: 0
-  maxMovementSpeed: 200
-  boostSpeed: 300
-  acceleration: 5
-  boostAcceleration: 10
-  deceleration: 1
-  turnTime: 40
-  rollSpeed: 30
-  ftlChargeTime: 5
-  ftlBurstTime: 30
-  ftlSpeed: 1000
---- !u!54 &2007374838
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2007374836}
-  serializedVersion: 2
-  m_Mass: 2
-  m_Drag: 0.1
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 1
 --- !u!4 &2007374839
 Transform:
   m_ObjectHideFlags: 0
@@ -1098,6 +1056,103 @@ MonoBehaviour:
   fractured: {fileID: 1342456525053472956, guid: 3411c56d2afd5af4a8df22b06f9551e3,
     type: 3}
   fracturesDestroyTime: 30
+--- !u!1 &2129290657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2129290659}
+  - component: {fileID: 2129290658}
+  m_Layer: 0
+  m_Name: Ship Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &2129290658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129290657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02851ea5e0c4f044b85d000cf2358b0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ships:
+  - shipPrefab: {fileID: 6878161017216317961, guid: 470a6dacf09d93547b130e3d9d3bd31f,
+      type: 3}
+    name: 
+    shipClass: 
+    selected: 1
+    slideSpeed: 0
+    movementSpeed: 0
+    maxMovementSpeed: 0
+    minMovementSpeed: 0
+    lastMovementSpeed: 0
+    boostSpeed: 0
+    acceleration: 0
+    boostAcceleration: 0
+    deceleration: 0
+    turnTime: 0
+    rollSpeed: 0
+    boostReleased: 0
+    ftlChargeTime: 0
+    ftlBurstTime: 0
+    ftlSpeed: 0
+    slideDirection: {x: 0, y: 0, z: 0}
+    turnDirection: {x: 0, y: 0, z: 0}
+    targetCamera: {x: 0, y: 0, z: 0, w: 0}
+    x: 0
+    y: 0
+    shipMovement: {fileID: 0}
+  - shipPrefab: {fileID: 0}
+    name: 
+    shipClass: 
+    selected: 0
+    slideSpeed: 0
+    movementSpeed: 0
+    maxMovementSpeed: 0
+    minMovementSpeed: 0
+    lastMovementSpeed: 0
+    boostSpeed: 0
+    acceleration: 0
+    boostAcceleration: 0
+    deceleration: 0
+    turnTime: 0
+    rollSpeed: 0
+    boostReleased: 0
+    ftlChargeTime: 0
+    ftlBurstTime: 0
+    ftlSpeed: 0
+    slideDirection: {x: 0, y: 0, z: 0}
+    turnDirection: {x: 0, y: 0, z: 0}
+    targetCamera: {x: 0, y: 0, z: 0, w: 0}
+    x: 0
+    y: 0
+    shipMovement: {fileID: 0}
+  spawn: {fileID: 0}
+  parent: {fileID: 0}
+--- !u!4 &2129290659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129290657}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &961685391330606379
 PrefabInstance:
   m_ObjectHideFlags: 0

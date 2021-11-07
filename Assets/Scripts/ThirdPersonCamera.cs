@@ -8,7 +8,7 @@ public class ThirdPersonCamera : MonoBehaviour
     private const float _minAngleY = -89.9f;
     private const float _maxAngleY = 89.9f;
 
-    private GameObject player;
+    private Transform ship;
 
     public float minDistance = 3f;
     public float maxDistance = 15f;
@@ -36,7 +36,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
     private void Init()
     {
-        player = GameObject.Find("Player");
+        ship = GameObject.Find("Player").transform.GetChild(0);
     }
 
     private void Rotate()
@@ -69,6 +69,6 @@ public class ThirdPersonCamera : MonoBehaviour
             transform.rotation = rotation; 
         }
         
-        transform.position = player.transform.position + rotation * offset;
+        transform.position = ship.position + rotation * offset;
     }
 }

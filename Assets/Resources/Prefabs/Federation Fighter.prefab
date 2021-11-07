@@ -35,6 +35,22 @@ Transform:
   m_Father: {fileID: 6872687608670255357}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &6354044834761232522
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6878161017216317961}
+  serializedVersion: 2
+  m_Mass: 2
+  m_Drag: 0.1
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!64 &1901898764
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -49,6 +65,30 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: a2b9f16335cfda74081507453d1466ee, type: 3}
+--- !u!114 &8051835655712552711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6878161017216317961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ad6472412def14bba931170eb180cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slideSpeed: 100
+  movementSpeed: 0
+  maxMovementSpeed: 200
+  boostSpeed: 300
+  acceleration: 5
+  boostAcceleration: 10
+  deceleration: 1
+  turnTime: 40
+  rollSpeed: 30
+  ftlChargeTime: 5
+  ftlBurstTime: 30
+  ftlSpeed: 1000
 --- !u!1 &7446976057984394703
 GameObject:
   m_ObjectHideFlags: 0

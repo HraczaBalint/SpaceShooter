@@ -71,7 +71,7 @@ public class ShipMovement : MonoBehaviour
 
     private void Init()
     {
-        rigidBody = GameObject.Find("Player").GetComponent<Rigidbody>();
+        rigidBody = GameObject.Find("Player").GetComponentInChildren<Rigidbody>();
         playerCamera = GameObject.Find("Player Camera").GetComponent<Transform>();
 
         exhaustParticles = GameObject.FindGameObjectsWithTag("Exhaust Particle");
@@ -222,6 +222,7 @@ public class ShipMovement : MonoBehaviour
         }
         else
         {
+            slideDirection = Vector3.zero;
             _thrusterSound = false;
             audioManager.Stop("Truster");
         }
@@ -229,7 +230,7 @@ public class ShipMovement : MonoBehaviour
 
     private void Speed()
     {
-        turnDirection = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z) * Vector3.forward;
+        turnDirection = Quaternion.Euler(rigidBody.transform.eulerAngles.x, rigidBody.transform.eulerAngles.y, rigidBody.transform.eulerAngles.z) * Vector3.forward;
 
         rigidBody.AddForce(turnDirection * movementSpeed * Time.deltaTime);
 
@@ -237,7 +238,7 @@ public class ShipMovement : MonoBehaviour
 
         rigidBody.angularVelocity = Vector3.zero;
 
-        if (rigidBody.velocity.magnitude < 1.5f && movementSpeed == 0f && slideDirection == Vector3.zero)
+        if (rigidBody.velocity.magnitude < 1f && movementSpeed == 0f && slideDirection == Vector3.zero)
         {
             rigidBody.velocity = Vector3.zero;
         }
